@@ -90,7 +90,7 @@ class MovieTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let genre = Genre.init(rawValue: section) else {
+        guard let genre = Genre(rawValue: section) else {
             return ""
         }
         
@@ -103,6 +103,41 @@ class MovieTableViewController: UITableViewController {
             return "Drama"
         }
     }
+        override func prepare(for segue : UIStoryboardSegue, sender: Any?) {
+            // 1. check sender for the cell that was tapped
+            if let tappedMovieCell: MovieTableViewCell = sender as? MovieTableViewCell {
+                
+                // 4. get our cell's indexPath
+                let cellIndexPath: IndexPath = self.tableView.indexPath(for: tappedMovieCell)!
+                
+                
+                // 5. get our cell's Movie
+                guard let genre = Genre.init(rawValue: cellIndexPath.section),
+                    let data = byGenre(genre) else {
+                        return
+                }
+
+                // 2. check for the right storyboard segue
+                if segue.identifier == "MovieDetailViewSegue" {
+                    
+                    // 3. get reference to the destination view controller
+                    let movieDetailViewController: MovieDetailViewController = segue.destination as! MovieDetailViewController
+                
+                    
+                    // 6. set the destionation's selectedMovie property
+                    let selectedMovie: Movie = data[cellIndexPath.row]
+                    movieDetailViewController.selectedMovie = selectedMovie
+                }
+                else if segue.identifier == "MovieCastDetailSegue" {
+                    let movieCastDetailViewController: MovieCastDetailViewController = segue.destination as! MovieCastDetailViewController
+                    let selectedMovie: Movie = data[cellIndexPath.row]
+                    movieCastDetailViewController.selectedMovie = selectedMovie
+                    
+                        }
+
+                }
+            }
+
     
     // MARK: - Utility
     func by(_ c: Century) -> [Movie]? {
@@ -147,3 +182,4 @@ class MovieTableViewController: UITableViewController {
         return filtered
     }
 }
+

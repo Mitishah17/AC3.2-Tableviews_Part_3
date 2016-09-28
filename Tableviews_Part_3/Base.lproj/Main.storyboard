@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KuV-Iy-6GA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="KuV-Iy-6GA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
         <array key="Roboto-Light.ttf">
             <string>Roboto-Light</string>
         </array>
@@ -23,11 +27,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieTableViewCell" rowHeight="200" id="NQa-gd-usH" customClass="MovieTableViewCell" customModule="Tableviews_Part_3" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="MovieTableViewCell" rowHeight="200" id="NQa-gd-usH" customClass="MovieTableViewCell" customModule="Tableviews_Part_3" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NQa-gd-usH" id="I3u-H0-aWI">
-                                    <frame key="frameInset" width="375" height="199"/>
+                                    <frame key="frameInset" width="328" height="199"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-c5-abE">
@@ -65,6 +69,8 @@
                                     <outlet property="moviePosterImageView" destination="aMM-c5-abE" id="fLg-LD-a9Y"/>
                                     <outlet property="movieSummaryLabel" destination="90p-Ty-yn0" id="kra-Rl-R96"/>
                                     <outlet property="movieTitleLabel" destination="FS7-pK-VSu" id="x8I-uc-4Yv"/>
+                                    <segue destination="3ex-a9-fTb" kind="show" identifier="MovieDetailViewSegue" id="CnH-Iw-rWS"/>
+                                    <segue destination="PfG-Ln-jlx" kind="show" identifier="MovieCastDetailSegue" trigger="accessoryAction" id="rRg-fI-LP3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -79,12 +85,124 @@
             </objects>
             <point key="canvasLocation" x="744.79999999999995" y="64.31784107946028"/>
         </scene>
+        <!--Movie Detail View Controller-->
+        <scene sceneID="hzL-Tn-DJg">
+            <objects>
+                <viewController id="3ex-a9-fTb" customClass="MovieDetailViewController" customModule="Tableviews_Part_3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7VO-Wg-gb9"/>
+                        <viewControllerLayoutGuide type="bottom" id="iFZ-75-JUh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fjv-XG-cyb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VG-Re-Bkp">
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSL-IS-FpI">
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfZ-RG-R2H">
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="999" text="Summary Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNQ-WL-jOK">
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f7z-bO-T8o">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="s2z-na-2cE"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="8VG-Re-Bkp" secondAttribute="trailing" constant="8" id="4am-dS-qIc"/>
+                            <constraint firstItem="pNQ-WL-jOK" firstAttribute="top" secondItem="bSL-IS-FpI" secondAttribute="bottom" constant="8" id="8B0-nG-vEy"/>
+                            <constraint firstItem="kfZ-RG-R2H" firstAttribute="top" secondItem="8VG-Re-Bkp" secondAttribute="bottom" constant="8" id="9HI-MY-Ke2"/>
+                            <constraint firstItem="f7z-bO-T8o" firstAttribute="top" secondItem="7VO-Wg-gb9" secondAttribute="bottom" constant="8" id="FBq-8N-6uf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f7z-bO-T8o" secondAttribute="trailing" constant="8" id="Gzv-Ra-kiK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bSL-IS-FpI" secondAttribute="trailing" constant="8" id="JUN-8C-DNX"/>
+                            <constraint firstItem="pNQ-WL-jOK" firstAttribute="leading" secondItem="fjv-XG-cyb" secondAttribute="leadingMargin" constant="8" id="Jic-Vv-iS0"/>
+                            <constraint firstItem="bSL-IS-FpI" firstAttribute="leading" secondItem="fjv-XG-cyb" secondAttribute="leadingMargin" constant="8" id="NbS-sb-HBY"/>
+                            <constraint firstItem="iFZ-75-JUh" firstAttribute="top" secondItem="pNQ-WL-jOK" secondAttribute="bottom" constant="8" id="OVZ-mP-c5g"/>
+                            <constraint firstItem="8VG-Re-Bkp" firstAttribute="top" secondItem="f7z-bO-T8o" secondAttribute="bottom" constant="8" id="TPj-v4-ZnG"/>
+                            <constraint firstItem="8VG-Re-Bkp" firstAttribute="leading" secondItem="fjv-XG-cyb" secondAttribute="leadingMargin" constant="8" id="V1J-YF-rvr"/>
+                            <constraint firstItem="kfZ-RG-R2H" firstAttribute="leading" secondItem="fjv-XG-cyb" secondAttribute="leadingMargin" constant="8" id="Wbo-d2-JaS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pNQ-WL-jOK" secondAttribute="trailing" constant="8" id="a1i-SY-wje"/>
+                            <constraint firstItem="f7z-bO-T8o" firstAttribute="leading" secondItem="fjv-XG-cyb" secondAttribute="leadingMargin" constant="8" id="h2t-pG-drJ"/>
+                            <constraint firstItem="bSL-IS-FpI" firstAttribute="top" secondItem="kfZ-RG-R2H" secondAttribute="bottom" constant="8" id="odg-Hc-AuO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kfZ-RG-R2H" secondAttribute="trailing" constant="8" id="w2A-Se-O1X"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="genreLabel" destination="8VG-Re-Bkp" id="PJ8-ee-d0t"/>
+                        <outlet property="locationLabel" destination="kfZ-RG-R2H" id="Nad-67-lbx"/>
+                        <outlet property="moviePosterImageView" destination="f7z-bO-T8o" id="gKO-MD-N9y"/>
+                        <outlet property="summaryFullTextLabel" destination="pNQ-WL-jOK" id="ly4-y2-uLl"/>
+                        <outlet property="summaryLabel" destination="bSL-IS-FpI" id="CEF-mX-P22"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nQP-c2-cJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1681" y="-158"/>
+        </scene>
+        <!--Movie Cast Detail View Controller-->
+        <scene sceneID="Vr0-Aa-0op">
+            <objects>
+                <viewController id="PfG-Ln-jlx" customClass="MovieCastDetailViewController" customModule="Tableviews_Part_3" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KNz-Ec-uf2"/>
+                        <viewControllerLayoutGuide type="bottom" id="caa-9e-dVg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ggZ-w8-7Je">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Cast List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgA-Zb-NoV">
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Actor List" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V5-v9-Kcs">
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vgA-Zb-NoV" firstAttribute="top" secondItem="KNz-Ec-uf2" secondAttribute="bottom" constant="8" id="OLh-2A-V78"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8V5-v9-Kcs" secondAttribute="trailing" constant="8" id="SP5-UH-nNj"/>
+                            <constraint firstItem="8V5-v9-Kcs" firstAttribute="leading" secondItem="ggZ-w8-7Je" secondAttribute="leadingMargin" constant="8" id="STj-AZ-cB9"/>
+                            <constraint firstItem="vgA-Zb-NoV" firstAttribute="leading" secondItem="ggZ-w8-7Je" secondAttribute="leadingMargin" constant="8" id="Tcp-cB-EOS"/>
+                            <constraint firstItem="8V5-v9-Kcs" firstAttribute="top" secondItem="vgA-Zb-NoV" secondAttribute="bottom" constant="8" id="Y6G-Rc-deh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vgA-Zb-NoV" secondAttribute="trailing" constant="8" id="lnx-MK-rke"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="castListLabel" destination="8V5-v9-Kcs" id="DfT-Wc-Beb"/>
+                        <outlet property="castTitleLabel" destination="vgA-Zb-NoV" id="cfA-3d-Vz2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hNO-Ax-pJA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1681" y="487"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="IjZ-c6-2Ma">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KuV-Iy-6GA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1jd-vJ-snn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1jd-vJ-snn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
